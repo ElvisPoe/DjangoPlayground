@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Meetups - Index</title>
+        <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{% url 'meetups.index' %}">All Meetups</a>
+            </nav>
+            <h1>New Meetups</h1>
+            <p>More comming soon!</p>
+        </header>
+        <main>
+            <section>
+                <h1>All Meetups</h1>
+
+                <ol>
+                    {% for meetup in meetups %}
+                        <li class="meetup-item">
+                            <article>
+                                <div class="meetup-summary">
+                                    <div class="meetup-image">
+                                        <img src="" alt="Meetup Image">
+                                    </div>
+                                    <div class="meetup-details">
+                                        <h3>{{ meetup.title }}</h3>
+                                        <address>{{ meetup.location }}</address>
+                                    </div>
+                                </div>
+                                <div class="meetup-actions">
+                                    <a class="btn" href="{% url 'meetups.show' meetup.slug %}">More</a>
+                                </div>
+                            </article>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </section>
+        </main>
+    </body>
+</html>
